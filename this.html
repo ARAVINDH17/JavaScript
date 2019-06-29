@@ -10,11 +10,11 @@
     
     <script>
         /*                    <============== THIS - KEYWORD ===============>
-Reference-Link[
+Refernce-Link[
 Line-No:
  
-22-163   ===> "https://codeburst.io/all-about-this-and-new-keywords-in-javascript-38039f71780c"
-  visit  ===> "https://medium.com/free-code-camp/a-guide-to-this-in-javascript-e3b9daef4df1"
+22-164   ===> "https://codeburst.io/all-about-this-and-new-keywords-in-javascript-38039f71780c"
+         ===> "https://medium.com/free-code-camp/a-guide-to-this-in-javascript-e3b9daef4df1"
            
             ]  
 
@@ -162,6 +162,59 @@ Example:4 <=======================================>
         => Third it checks if the function called via context object (implicit binding).
         => Default global object (undefined in case of strict mode).
         <===============================================================================================>
+        a,==>         >> Binding<<
+          function show(){
+            return this;
+          }
+          var showThis=show.bind({});
+          console.log(showThis()) // it gives empty object
+          console.log(show()) //it gives window object
+
+        b, ==>
+           var a={
+             name:"Aravindh"
+           }
+           var b={
+             name:"Divakar"
+           }
+           function showName(){
+             return this.name;
+           }
+           // I want to print name in a and b object using showName Function
+     <=====================================================================>
+
+ <START> 1 ==>  Call for Passing values
+            var obj={
+              num:5
+            }
+            var addFun=function(a){
+              return this.num + a;
+            };
+
+            console.log(addFun.call(obj,3)); // 8
+<============================================================================>
+         2 ==> Apply for Passing list of datas like array
+             var obj={
+              num:4
+            }
+            var addFun=function(a,b,c){
+              return this.num + a+b+c;
+            };
+            
+            var arr=[1,2,3];
+            console.log(addFun.apply(obj,arr)); // 10
+<================================================================================>
+         3 ==> Bind
+          var obj={
+              num:4
+            }
+            var addFun=function(a,b,c){
+              return this.num + a+b+c;
+            };
+            
+            var arr=[1,2,3];
+            var bound=addFun.bind(obj);
+            console.log(bound(1,2,3)); 
         */
 
     </script>
