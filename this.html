@@ -13,8 +13,8 @@
 Refernce-Link[
 Line-No:
  
-22-164   ===> "https://codeburst.io/all-about-this-and-new-keywords-in-javascript-38039f71780c"
-         ===> "https://medium.com/free-code-camp/a-guide-to-this-in-javascript-e3b9daef4df1"
+22-218   ===> "https://codeburst.io/all-about-this-and-new-keywords-in-javascript-38039f71780c"
+218-340  ===> "https://medium.com/free-code-camp/a-guide-to-this-in-javascript-e3b9daef4df1"
            
             ]  
 
@@ -215,6 +215,130 @@ Example:4 <=======================================>
             var arr=[1,2,3];
             var bound=addFun.bind(obj);
             console.log(bound(1,2,3)); 
+ <=========================================================================================================>
+                                       PART -2
+          The this keyword hands-down is one of the most widely used and yet misunderstood in JavaScript.
+          I’ll try to change that today.
+          Let’s go back to the good old school days, when we learned about pronouns.
+
+          "Phelps is swimming fast because he wants to win the race."
+
+           Note the use of the pronoun “he”.
+           We don’t directly address Phelps here but use the pronoun he to refer to Phelps. 
+           Similarly JavaScript uses the this keyword as a referent to refer to the object
+           in context i.e the subject.
+           <=========================================================================>
+           Example:
+
+            var car= {
+            make: "Lamborghini",
+            model: "Huracán",
+            fullName: function () {
+            console.log(this.make+" " +this.model);
+            console.log(car.make+ " " +car.model);
+            }
+            }
+            car.fullName();
+
+            In the above code, we have an object car which has the properties make,
+            model and fullName. The value of fullName is a function which prints the full name of the car
+            using 2 different syntaxes:
+
+            Using this => this.make+” “ +this.model the this refers to the object in context
+            which is car so this.make is effectively car.make and so is this.model.
+            Using dot notation, we can access the properties of objects, car.make & car.model.
+            <=======================================================================================>
+            It takes different values depending upon the usage
+                     
+                     =>Inside a method.
+                     
+                     =>Inside a function.
+                     
+                     =>Alone.
+                     
+                     =>In an event.
+                     
+                     =>call(), and apply().
+        <==============================================================================================>
+       ==>> Inside a method
+
+          When this is used inside a method, it refers to the owner object.
+          Functions defined inside an object are called methods. Let’s take our car example again.
+
+          var car= {
+          make: "Lamborghini",
+          model: "Huracán",
+          fullName: function () {
+          console.log(this.make+" " +this.model);
+          console.log(car.make+ " " +car.model);
+          }
+          }
+          car.fullName();
+
+          fullName() here is a method. The this inside this method belongs to car.
+        <================================================================================================>
+      ==>>Inside a function
+  
+          this inside a function is a bit complicated.
+          First thing to understand is that, like all objects have properties,
+          likewise functions have properties too.
+          Whenever that function is executed, it gets the this property,
+          which is a variable with the value of the object that invokes it.
+          this is really just a shortcut reference for the “antecedent object” — the invoking object.
+
+          If the function is not invoked by an object then the this inside the function 
+          belongs to the global object, which is called window.
+          In this case this will refer to the values defined in the global scope.
+          Let’s see an example for better understanding:
+
+           var make= "Mclaren";
+           var model= "720s"
+           function fullName(){ 
+           console.log(this.make+ " " + this.model);
+           }
+           var car = {
+               make:"Lamborghini",
+               model:"Huracán",
+               fullName:function () {
+               console.log (this.make + " " + this.model);
+               }
+           }
+               car.fullName(); // Lmborghini Huracán
+               window.fullName(); // Mclaren 720S
+               fullName(); // Mclaren 720S
+
+           Here make, model and fullName are defined globally, 
+           while car object has an implementation of fullName as well.
+           When invoked by the car object this referred to the properties defined inside the object.
+           On the other hand, the other two function callings are the same 
+           and return the globally defined properties.
+           <=============================================================================================>
+          ==> Alone
+
+           hen used alone not inside any function or object, this refers to the global object.
+
+           var one="first";
+           var two="second";
+           var three="third"
+
+          console.log(this.two) //second
+          The this here refers to the global name property.
+          <==============================================================================================>
+          ==>>In an event
+
+          Events can be of any type, but for the sake of simplicity and clarity,
+          let’s take a click event.
+          Whenever a button is clicked and an event is raised,
+          it can call another function to do a certain task based on the click. 
+          If this is used inside that function, it will refer to the element which raised the event. 
+          In the DOM, all the elements are stored as objects. 
+          That is why when an event is raised it refers to that element, 
+          because that webpage element is actually an object inside the DOM.
+Example:
+          <button onclick="this.style.display='none'">
+             Remove Me!
+            </button>
+          <===============================================================================================>
         */
 
     </script>
